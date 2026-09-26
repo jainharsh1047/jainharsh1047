@@ -4,6 +4,11 @@
 | :---: | :---: |
 | ![](profile-3d-contrib/profile-green-animate.svg) | ![](profile-3d-contrib/profile-night-view.svg) |
 
+<p align="center">
+  <img src="profile-3d-contrib/profile-season-animate.svg" alt="My 3D Cityscape" width="90%">
+</p>
+
+
 
 
 # 💻 Tech Stack:
