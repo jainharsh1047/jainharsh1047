@@ -1,4 +1,4 @@
-name: GitHub-Profile-3D-Contrib
+name: Generate 3D Skyscrapers
 
 on:
   schedule:
@@ -6,19 +6,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  generate:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
-    name: generate-github-profile-3d-contrib
+    timeout-minutes: 5
+    
     steps:
-      - uses: actions/checkout@v3
-      - uses: yoshi389111/github-profile-3d-contrib@0.7.1
+      - name: Generate 3D Contribution Blocks
+        uses: platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-3d.svg?palette=github-dark
+      - name: Push 3D SVG to Output Branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USERNAME: ${{ github.repository_owner }}
-      - name: Commit & Push Changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A .
-          git diff --staged --quiet || git commit -m "Generated 3D Profile Graphs"
-          git push
