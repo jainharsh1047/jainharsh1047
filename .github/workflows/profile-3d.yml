@@ -18,7 +18,7 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/github-contribution-grid-3d.svg?palette=github-dark
+            dist/github-contribution-grid-3d.svg?palette=github-dark&type=isometric
       - name: Push 3D SVG to Output Branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
