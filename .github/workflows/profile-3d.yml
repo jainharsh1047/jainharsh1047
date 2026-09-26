@@ -13,16 +13,22 @@ jobs:
     timeout-minutes: 5
     
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
       - name: Generate 3D Contribution Blocks
         uses: platane/snk@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
             dist/github-contribution-grid-3d.svg?palette=github-dark&type=isometric
-      - name: Push 3D SVG to Output Branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and Push Directly to Main
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          mkdir -p profile-3d-assets
+          cp dist/github-contribution-grid-3d.svg profile-3d-assets/3d-grid.svg
+          git add profile-3d-assets/3d-grid.svg
+          git diff --staged --quiet || git commit -m "Updated 3D skyscrapers asset"
+          git push origin main
