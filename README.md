@@ -8,6 +8,9 @@
   <img src="profile-3d-contrib/profile-season-animate.svg" alt="My 3D Cityscape" width="90%">
 </p>
 
+<p align="center">
+  <img src="profile-3d-assets/3d-grid.svg" alt="3D Cityscape" width="100%">
+</p>
 
 
 
