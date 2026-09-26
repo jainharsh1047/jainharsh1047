@@ -1,9 +1,10 @@
+should i paste this code after removing the older yaml one
 name: GitHub-Profile-3D-Contrib
 
 on:
-  schedule: # Runs every day at midnight
+  schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch: # Allows you to run it manually at any time
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,10 +16,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
+          SETTING_JSON: "profile-3d-settings.json" # <-- Add this line
       - name: Commit & Push Changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A .
-          git diff --staged --quiet || git commit -m "Generated 3D Profile Contrib Grid"
+          git diff --staged --quiet || git commit -m "Generated Taller 3D Profile Contrib Grid"
           git push
